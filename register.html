@@ -38,7 +38,7 @@
 
 <body class="contact-page">
 
-  <header id="header" class="header d-flex align-items-center sticky-top">
+  <header  id="header" class="header d-flex align-items-center sticky-top hidden">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto">
@@ -85,12 +85,7 @@
     <div class="page-title light-background">
       <div class="container d-lg-flex justify-content-between align-items-center">
         <h1 class="mb-2 mb-lg-0">Register</h1>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Register</li>
-          </ol>
-        </nav>
+      
       </div>
     </div><!-- End Page Title -->
 
@@ -115,12 +110,64 @@
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  <input type="text" class="form-control" name="phone" placeholder="Phone Number" required="">
                 </div>
 
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                    <input type="number" id="placeholder" class="form-control input-focus register_dropdown" name="age" placeholder="Your Age" required>
                 </div>
+
+                      <!--Gender-->
+                      <div class="col-md-12">
+                        <select id="" class="form-control register_dropdown input-focus" name="number_of_children" required>
+                            <option class="placeholder-option input-focus" disabled selected hidden value="">--Select Children Number--</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+    
+                        </select>                </div>
+
+                                      <!--Education-->
+                <div class="col-md-12">
+                    <select id="education" class="form-control input-focus register_dropdown" name="education" required>
+                        <option class="placeholder-option" disabled selected hidden value="">--Select Last Education--</option>
+                        <option value="High school">High school</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="Bachelor">Bachelor</option>
+                        <option value="Master">Master</option>
+                        <option value="PhD">PhD</option>
+
+
+
+                    </select>                </div>
+
+
+                <div class="col-md-12">
+                    <input type="text" class="form-control" name="occupation" placeholder="Your occupation" required="">
+                </div>
+
+               
+
+                <!--Number of children-->
+                <div class="col-md-12">
+                    <select id="Nchildren" class="form-control register_dropdown input-focus" name="number_of_children" required>
+                        <option class="placeholder-option" disabled selected hidden value="">--Select Children Number--</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+
+                    </select>                </div>
+          
+
+               
+                    <div class="col-md-12">
+                        <input type="password" class="form-control" name="password" placeholder="Your password" required=>
+                      </div>
 
                 <div class="col-md-12 text-center">
                   <div class="loading">Loading</div>
@@ -130,7 +177,10 @@
                   <button type="submit">Send Message</button>
                 </div>
 
-              </div>
+                    
+                
+
+             
             </form>
           </div><!-- End Contact Form -->
 
@@ -142,7 +192,7 @@
 
   </main>
 
-  <footer id="footer" class="footer dark-background">
+  <footer id="footer" class="footer dark-background hidden">
 
     <div class="container footer-top">
       <div class="row gy-4">

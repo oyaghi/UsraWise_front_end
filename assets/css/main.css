@@ -2525,3 +2525,92 @@ section,
   margin-left: calc(-0.5 * var(--bs-gutter-x));
   justify-content: center;
 }
+
+.register_dropdown{
+  font-size: 14px;
+    padding: 10px 15px;
+    box-shadow: none;
+    border-radius: 0;
+    color: var(--default-color);
+    background-color: 
+color-mix(in srgb, var(--background-color), transparent 50%);
+    border-color: 
+color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.first_option{
+  color:red;
+}
+
+.placeholder-option {
+  color: gray; /* Adjust the color to make it look like a placeholder */
+  opacity: 0.5; /* Reduce the opacity */
+}
+
+
+
+/* 
+.placeholder-option{
+  
+    -webkit-appearance: none;
+    width: 100%;
+    padding: 1.2rem 7rem;
+    background-color: #f6f6f6;
+    border: 0px;
+    font-family: inherit;
+    font-size: 1.4rem;
+    position: absolute;
+    background: transparent;
+  } */
+
+  select,
+select option {
+  color: #000000;
+}
+
+select:invalid,
+select option[value=""] {
+
+  color: #aaaaaac9
+}
+
+label {
+  display: block;
+  margin: 16px 0;
+}
+
+/*Added for browser compatibility*/
+[hidden] {
+  display: none;
+}
+
+
+
+
+.input-focus:focus {
+  border-color: var(--accent-color); /* Change border color on focus */
+  outline: none; /* Remove the default outline */
+  box-shadow: none;
+}
+
+#placeholder::placeholder{
+
+    color: #aaa; /* Set the color of the placeholder text */
+    opacity: 70%;  /* Ensure the opacity is fully opaque */
+  
+}
+
+.hidden{
+  display: none !important; 
+}
+
+#password_placeholder::placeholder{
+  color: #aaa ; /* Set the color of the placeholder text */
+  opacity: 70%;  /* Ensure the opacity is fully opaque */
+
+}
+
+.team_img{
+  width:150px;
+  height: 150px;
+}

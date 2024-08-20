@@ -6,19 +6,20 @@ Project Description
 
 ### Todo
 
+- [ ] Edit the password field in registration page  
 - [ ]   
 - [ ] ensure consistent layout in the other wanted pages  
 - [ ] Ensure that buttons redirect you to wanted pages  
-- [ ] Edit Home Page  
-- [ ] Edit the About page  
 - [ ] Edit The page to ensure just wanted pages  
 - [ ] Create a Dashboard page ?!  
-- [ ] Create a Login page  
-- [ ] Create a Registration Page  
 
 ### In Progress
 
+- [ ] Edit the About page  
+- [ ] Edit Home Page  
 
 ### Done ✓
 
+- [x] Create a Registration Page  
+- [x] Create a Login page  
 
