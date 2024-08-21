@@ -98,28 +98,28 @@
         <div class="rows gy-4">
 
           <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form register">
+            <form id="registerForm"  method="post" class="php-email-form register">
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                  <input id="name" type="text" name="name" class="form-control" placeholder="Your Name" required="">
                 </div>
 
                 <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                  <input id="email" type="email" class="form-control" name="email" placeholder="Your Email" required="">
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="phone" placeholder="Phone Number" required="">
+                  <input id="phone" type="text" class="form-control" name="phone" placeholder="Phone Number" required="">
                 </div>
 
                 <div class="col-md-12">
-                    <input type="number" id="placeholder" class="form-control input-focus register_dropdown" name="age" placeholder="Your Age" required>
+                    <input id="age" type="number" id="placeholder" class="form-control input-focus register_dropdown" name="age" placeholder="Your Age" required>
                 </div>
 
                       <!--Gender-->
                       <div class="col-md-12">
-                        <select id="" class="form-control register_dropdown input-focus" name="number_of_children" required>
+                        <select id="gender" class="form-control register_dropdown input-focus" name="number_of_children" required>
                             <option class="placeholder-option input-focus" disabled selected hidden value="">Gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
@@ -128,7 +128,7 @@
 
                                       <!--Education-->
                 <div class="col-md-12">
-                    <select id="education" class="form-control input-focus register_dropdown" name="education" required>
+                    <select id="education_level" class="form-control input-focus register_dropdown" name="education" required>
                         <option class="placeholder-option" disabled selected hidden value="">Highest Education Level</option>
                         <option value="High school">High school</option>
                         <option value="Diploma">Diploma</option>
@@ -142,14 +142,14 @@
 
 
                 <div class="col-md-12">
-                    <input type="text" class="form-control" name="occupation" placeholder="Your occupation" required="">
+                    <input id="occupation" type="text" class="form-control" name="occupation" placeholder="Your occupation" required="">
                 </div>
 
                
 
                 <!--Number of children-->
                 <div class="col-md-12">
-                    <select id="Nchildren" class="form-control register_dropdown input-focus" name="number_of_children" required>
+                    <select id="number_of_children" class="form-control register_dropdown input-focus" name="number_of_children" required>
                         <option class="placeholder-option" disabled selected hidden value="">Children Number</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -166,12 +166,16 @@
 
                
                     <div class="col-md-12">
-                        <input type="password" class="form-control" name="password" placeholder="Your password" required=>
+                        <input id="password" type="password" class="form-control" name="password" placeholder="Your password" required=>
+                      </div>
+
+                      <div class="col-md-12">
+                        <input id="confirmPassword" type="password" class="form-control" name="password" placeholder="Enter your password again"" required=>
                       </div>
 
                 <div class="col-md-12 text-center">
                   <div class="loading">Loading</div>
-                  <div class="error-message"></div>
+                  <div class="error-message-register"></div>
                   <div class="sent-message">Your message has been sent. Thank you!</div>
 
                   <button type="submit">Send Message</button>
@@ -239,10 +243,10 @@
         <div class="col-lg-4 col-md-12 footer-newsletter">
           <h4>Our Newsletter</h4>
           <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-          <form action="forms/newsletter.php" method="post" class="php-email-form">
+          <form  method="post" class="php-email-form">
             <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
             <div class="loading">Loading</div>
-            <div class="error-message"></div>
+            <div class="error-message-register"></div>
             <div class="sent-message">Your subscription request has been sent. Thank you!</div>
           </form>
         </div>
@@ -271,7 +275,6 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
@@ -282,7 +285,78 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    async function validateFormFieldsAndSubmit() {
+        const email = document.getElementById('email').value;
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const age = document.getElementById('age').value;
+        const gender = document.getElementById('gender').value;
+        const occupation = document.getElementById('occupation').value;
+        const educationLevel = document.getElementById('education_level').value;
+        const numberOfChildren = document.getElementById('number_of_children').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const errorMessage = document.querySelector(".error-message-register");
 
+
+        // Check if the passwords match
+        if (password !== confirmPassword) {
+            errorMessage.textContent = "Password don't match"
+            return false;
+        }
+
+        // Further validation for other fields
+        if (!email || !name || !phone || !age || !gender || !occupation || !educationLevel || !numberOfChildren) {
+          errorMessage.textContent = "All fields required";
+          return false;
+        }
+
+        // Prepare the data for the API request
+        const registrationData = {
+            email: email,
+            name: name,
+            phone: phone,
+            age: age.toString(),
+            gender: gender,
+            occupation: occupation,
+            education_level: educationLevel,
+            number_of_children: parseInt(numberOfChildren),
+            password: password
+        };
+
+        // Send the data to the registration API
+        try {
+            const response = await fetch('https://7b13-176-29-148-34.ngrok-free.app/core/user/register/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(registrationData)
+            });
+
+            // Handle the API response
+            if (response.ok) {
+                const responseData = await response.json();
+                window.location.href = 'login.html';
+                console.log('Registration successful:', responseData);
+            } else {
+                const errorData = await response.json();
+                errorMessage.textContent = errorData.Message || 'Registration failed!';
+                console.log('This email or phone number is already have an account', errorData);
+            }
+        } catch (error) {
+            errorMessage.textContent = 'An error occurred. Please try again later.';
+            console.error('Error during registration:', error);
+        }
+    }
+
+    // Attach the function to the form's submit event
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        validateFormFieldsAndSubmit(); // Validate and submit the form
+    });
+</script>
 </body>
 
 </html>

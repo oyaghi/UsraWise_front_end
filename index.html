@@ -56,8 +56,10 @@
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
-      <a class="btn-getstarted login" href="login.html">Login</a>
-      <a class="btn-getstarted" href="register.html">Join Us</a>
+      <a id="btn_login" class="btn-getstarted login" href="login.html">Login</a>
+      <a id="btn_register" class="btn-getstarted" href="register.html">Join Us</a>
+      <a id="btn_logout" class="btn-getstarted" style="display:none;" href="#">Logout</a>
+
 
     </div>
   </header>
@@ -467,6 +469,32 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    window.onload = function() {
+    const token = localStorage.getItem('accessToken');
+    const loginButton = document.getElementById('btn_login');
+    const logoutButton = document.getElementById('btn_logout');
+    const registerButton = document.getElementById('btn_register');
+
+    if (token) {
+        loginButton.style.display = 'none';
+        registerButton.style.display = 'none'
+        logoutButton.style.display = 'block';
+    } else {
+        loginButton.style.display = 'block';
+        registerButton.style.display = 'block'
+        logoutButton.style.display = 'none';
+    }
+};
+
+function logout() {
+    localStorage.removeItem('accessToken');
+    window.location.reload(); // Reload the page to update the buttons
+}
+
+document.getElementById('btn_logout').addEventListener('click', logout);
+  </script>
 
 </body>
 
