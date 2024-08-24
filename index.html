@@ -53,6 +53,7 @@
           <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="pricing.html">Pricing</a></li>
+          <li><a id="dashboard" style="display:none;" href="dashboard.html">Dashboard</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -476,15 +477,20 @@
     const loginButton = document.getElementById('btn_login');
     const logoutButton = document.getElementById('btn_logout');
     const registerButton = document.getElementById('btn_register');
+    const dashboard = document.getElementById('dashboard');
+
 
     if (token) {
         loginButton.style.display = 'none';
         registerButton.style.display = 'none'
         logoutButton.style.display = 'block';
+        dashboard.style.display = 'block';
+
     } else {
         loginButton.style.display = 'block';
         registerButton.style.display = 'block'
         logoutButton.style.display = 'none';
+        dashboard.style.display = 'none';
     }
 };
 
