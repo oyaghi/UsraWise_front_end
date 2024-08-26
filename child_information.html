@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Child</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Prevent scrolling the body itself */
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            height: 100%; /* Fill the entire viewport height */
+            overflow-y: auto; /* Allow scrolling within the form container */
+            box-sizing: border-box; /* Include padding in height calculation */
+        }
+
+        .form-container h2, .form-container h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container input,
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0E79B2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .form-container button:hover {
+            background-color: #0E69A0;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add Child</h2>
+        <form id="child-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Name" required>
+
+            <label for="age">Age</label>
+            <input type="number" id="age" placeholder="Age" required>
+
+            <label for="gender">Gender</label>
+            <select id="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label for="learning-style">Learning Style</label>
+            <input type="text" id="learning-style" placeholder="Learning Style" required>
+
+            <label for="gpa">GPA</label>
+            <input type="number" step="0.01" id="gpa" placeholder="GPA" required>
+
+            <label for="grade">Grade</label>
+            <input type="text" id="grade" placeholder="Grade" required>
+
+            <label for="hobbies">Hobbies</label>
+            <input type="text" id="hobbies" placeholder="Hobbies" required>
+
+            <label for="learning-challenges">Learning Challenges</label>
+            <input type="text" id="learning-challenges" placeholder="Learning Challenges" required>
+
+            <!-- Test Scores -->
+            <h3>Test Scores</h3>
+
+            <label for="arabic">Arabic</label>
+            <input type="number" id="arabic" placeholder="Score" required>
+
+            <label for="english">English</label>
+            <input type="number" id="english" placeholder="Score" required>
+
+            <label for="social">Social</label>
+            <input type="number" id="social" placeholder="Score" required>
+
+            <label for="math">Math</label>
+            <input type="number" id="math" placeholder="Score" required>
+
+            <label for="science">Science</label>
+            <input type="number" id="science" placeholder="Score" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('child-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Capture form data
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const gender = document.getElementById('gender').value;
+    const learningStyle = document.getElementById('learning-style').value;
+    const gpa = document.getElementById('gpa').value;
+    const grade = document.getElementById('grade').value;
+    const hobbies = document.getElementById('hobbies').value;
+    const learningChallenges = document.getElementById('learning-challenges').value;
+    const testScores = {
+        arabic: document.getElementById('arabic').value,
+        english: document.getElementById('english').value,
+        social: document.getElementById('social').value,
+        math: document.getElementById('math').value,
+        science: document.getElementById('science').value
+    };
+
+    const childData = {
+    name: document.getElementById('name').value,
+    age: document.getElementById('age').value,
+    gender: document.getElementById('gender').value,
+    learningStyle: document.getElementById('learning-style').value,
+    gpa: document.getElementById('gpa').value,
+    grade: document.getElementById('grade').value,
+    hobbies: document.getElementById('hobbies').value,
+    learningChallenges: document.getElementById('learning-challenges').value,
+    testScores: {
+        arabic: document.getElementById('arabic').value,
+        english: document.getElementById('english').value,
+        social: document.getElementById('social').value,
+        math: document.getElementById('math').value,
+        science: document.getElementById('science').value
+    }
+};
+
+// Store the object in localStorage    // Create new child card content
+
+    // Find the parent container where child cards are added
+    localStorage.setItem('newChild', JSON.stringify(childData));
+
+    // Redirect back to the dashboard
+    window.location.href = 'dashboard.html';
+});
+    </script>
+</body>
+</html>
