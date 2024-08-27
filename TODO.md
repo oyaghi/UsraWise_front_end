@@ -6,6 +6,7 @@ Project Description
 
 ### Todo
 
+- [ ] Registration edit  
 - [ ] Edit the password field in registration page  
 - [ ]   
 - [ ] ensure consistent layout in the other wanted pages  

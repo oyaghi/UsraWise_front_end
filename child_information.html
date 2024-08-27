@@ -93,10 +93,41 @@
             <input type="text" id="grade" placeholder="Grade" required>
 
             <label for="hobbies">Hobbies</label>
-            <input type="text" id="hobbies" placeholder="Hobbies" required>
+            <div class="col-md-12">
+                <select id="hobbies" class="form-control register_dropdown input-focus" name="number_of_children" required>
+                    <option class="placeholder-option" disabled selected hidden value="">Hobbies</option>
+                    <option value="1">Reading</option>
+                    <option value="2">Cooking/Baking</option>
+                    <option value="3">Drawing/Coloring</option>
+                    <option value="4">Playing Sports</option>
+                    <option value="5">Playing Video Games</option>
+                    <option value="6">Building</option>
+                    <option value="7">Music</option>
+                    <option value="8">Solve Puzzles</option>
+                    <option value="9">Writing</option>
+                    <option value="10">Photography</option>
+
+
+                </select>                </div>
 
             <label for="learning-challenges">Learning Challenges</label>
-            <input type="text" id="learning-challenges" placeholder="Learning Challenges" required>
+            <div class="col-md-12">
+                <select id="learning-challenges" class="form-control register_dropdown input-focus" name="number_of_children" required>
+                    <option class="placeholder-option" disabled selected hidden value="">Learning Challenges</option>
+                    <option value="1">Dyslexia</option>
+                    <option value="2">Dyscalculia</option>
+                    <option value="3">Dysgraphia</option>
+                    <option value="4">ADHD</option>
+                    <option value="5">Processing Speed</option>
+                    <option value="6">Memory Issues</option>
+                    <option value="7">Auditory Processing</option>
+                    <option value="8">Visual Processing</option>
+                    <option value="9">Language Processing</option>
+                    <option value="10">Executive Functioning</option>
+
+
+                </select>                </div>
+
 
             <!-- Test Scores -->
             <h3>Test Scores</h3>
@@ -121,52 +152,55 @@
     </div>
 
     <script>
-        document.getElementById('child-form').addEventListener('submit', function(event) {
+        document.getElementById('child-form').addEventListener('submit',async function(event) {
     event.preventDefault(); // Prevent default form submission
 
     // Capture form data
-    const name = document.getElementById('name').value;
-    const age = document.getElementById('age').value;
-    const gender = document.getElementById('gender').value;
-    const learningStyle = document.getElementById('learning-style').value;
-    const gpa = document.getElementById('gpa').value;
-    const grade = document.getElementById('grade').value;
-    const hobbies = document.getElementById('hobbies').value;
-    const learningChallenges = document.getElementById('learning-challenges').value;
-    const testScores = {
-        arabic: document.getElementById('arabic').value,
-        english: document.getElementById('english').value,
-        social: document.getElementById('social').value,
-        math: document.getElementById('math').value,
-        science: document.getElementById('science').value
-    };
+    
 
     const childData = {
     name: document.getElementById('name').value,
-    age: document.getElementById('age').value,
+    age: parseInt(document.getElementById('age').value),
     gender: document.getElementById('gender').value,
-    learningStyle: document.getElementById('learning-style').value,
-    gpa: document.getElementById('gpa').value,
+    learning_style: document.getElementById('learning-style').value,
+    gpa: parseFloat(document.getElementById('gpa').value),
     grade: document.getElementById('grade').value,
-    hobbies: document.getElementById('hobbies').value,
-    learningChallenges: document.getElementById('learning-challenges').value,
-    testScores: {
-        arabic: document.getElementById('arabic').value,
-        english: document.getElementById('english').value,
-        social: document.getElementById('social').value,
-        math: document.getElementById('math').value,
-        science: document.getElementById('science').value
-    }
+    hobbies: [document.getElementById('hobbies').value],
+    behavior_challenges: [document.getElementById('learning-challenges').value],
+    standard_test_score:[
+        {"id":5,"score":document.getElementById('arabic').value},
+        {"id":6,"score":document.getElementById('english').value},
+        {"id":7,"score":document.getElementById('social').value},
+        {"id":8,"score":document.getElementById('math').value},
+        {"id":9,"score":document.getElementById('science').value},
+    ]
 };
 
-// Store the object in localStorage    // Create new child card content
+try {
+            const token = localStorage.getItem('accessToken');
+            const response = await fetch('https://9dae-176-29-148-34.ngrok-free.app/core/user/child_register/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(childData)
+            });
 
-    // Find the parent container where child cards are added
-    localStorage.setItem('newChild', JSON.stringify(childData));
-
-    // Redirect back to the dashboard
-    window.location.href = 'dashboard.html';
-});
+            // Handle the API response
+            if (response.ok) {
+                localStorage.setItem('newChild', JSON.stringify(childData));
+                window.location.href = 'dashboard.html';
+                
+            } else {
+                const errorData = await response.json();
+                console.log(errorData)
+            }
+        } catch (error) {
+            errorMessage.textContent = 'An error occurred. Please try again later.';
+            console.error('Error during registration:', error);
+        }
+    });
     </script>
 </body>
 </html>

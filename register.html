@@ -146,6 +146,19 @@
                     <input id="occupation" type="text" class="form-control" name="occupation" placeholder="Your occupation" required="">
                 </div>
 
+                <div class="col-md-12">
+                  <select id="parenting_style" class="form-control register_dropdown input-focus" name="parenting_style" required>
+                      <option class="placeholder-option" disabled selected hidden value="">Taughting Style</option>
+                      <option value="Hands-On Learning">Hands-On Learning</option>
+                      <option value="Authoritative">Authoritative</option>
+                      <option value="Play-Based">Play-Based</option>
+                      <option value="Direct">Direct</option>
+                      <option value="Collaborative ">Collaborative </option>
+                      <option value="Supportive">Supportive</option>
+                      
+
+                  </select>                </div>
+
                
 
                 <!--Number of children-->
@@ -294,6 +307,7 @@
         const age = document.getElementById('age').value;
         const gender = document.getElementById('gender').value;
         const occupation = document.getElementById('occupation').value;
+        const parenting_style= document.getElementById('parenting_style').value;
         const educationLevel = document.getElementById('education_level').value;
         const numberOfChildren = document.getElementById('number_of_children').value;
         const password = document.getElementById('password').value;
@@ -308,7 +322,7 @@
         }
 
         // Further validation for other fields
-        if (!email || !name || !phone || !age || !gender || !occupation || !educationLevel || !numberOfChildren) {
+        if (!email || !name || !phone || !age || !gender || !occupation || !educationLevel || !numberOfChildren ||!parenting_style) {
           errorMessage.textContent = "All fields required";
           return false;
         }
@@ -321,6 +335,7 @@
             age: age.toString(),
             gender: gender,
             occupation: occupation,
+            parenting_style: parenting_style,
             education_level: educationLevel,
             number_of_children: parseInt(numberOfChildren),
             password: password
@@ -328,7 +343,7 @@
 
         // Send the data to the registration API
         try {
-            const response = await fetch('https://7b13-176-29-148-34.ngrok-free.app/core/user/register/', {
+            const response = await fetch('https://9dae-176-29-148-34.ngrok-free.app/core/user/register/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
