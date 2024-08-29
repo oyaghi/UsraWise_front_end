@@ -1,0 +1,169 @@
+:root {
+    --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --heading-font: "Raleway",  sans-serif;
+    --nav-font: "Poppins",  sans-serif;
+  }
+  
+  /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+  :root { 
+    --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+    --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
+    --heading-color: #556270; /* Color for headings, subheadings and title throughout the website */
+    --accent-color: #d9232d; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+    --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+    --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  }
+  
+  /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+  :root {
+    --nav-color: #556270;  /* The default color of the main navmenu links */
+    --nav-hover-color: #d9232d; /* Applied to main navmenu links when they are hovered over or active */
+    --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
+    --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+    --nav-dropdown-color: #556270; /* Used for navigation links of the dropdown items in the navigation menu. */
+    --nav-dropdown-hover-color: #d9232d; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  }
+  
+  /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
+  
+  .light-background {
+    --background-color: #f2f4f6;
+    --surface-color: #ffffff;
+  }
+  
+  .dark-background {
+    --background-color: #3b4654;
+    --default-color: #ffffff;
+    --heading-color: #ffffff;
+    --surface-color: #444e5b;
+    --contrast-color: #ffffff;
+  }
+  
+  /* Smooth scroll */
+  :root {
+    scroll-behavior: smooth;
+  }
+
+
+
+  
+
+.custom_btn_primary:hover,
+.custom_btn_primary:focus:hover {
+  color: var(--contrast-color);
+  background: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+.custom_btn_primary,
+.custom_btn_primary:focus {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  font-size: 14px;
+  padding: 8px 25px;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+
+
+
+
+.login-link {
+    color: var(--heading-color);
+  }
+  
+  .login-link:hover {
+    color: var(--accent-color);
+  }
+
+  
+  .remember-me-label {
+    color: var(--default-color);
+  }
+  
+  input[type="checkbox"] {
+    accent-color: var(--accent-color);
+  }
+  
+
+
+
+  .social{
+    background: color-mix(in srgb, var(--default-color), transparent 94%);
+    transition: ease-in-out 0.3s;
+    border-radius: 5px;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .social i {
+    color: color-mix(in srgb, var(--default-color), transparent 20%);
+    font-size: 16px;
+    margin: 0 2px;
+  }
+  
+  .social:hover {
+    background: var(--accent-color);
+  }
+  
+  .social:hover i {
+    color: var(--contrast-color);
+  }
+
+
+  .page-title {
+    color: var(--default-color);
+    background-color: var(--background-color);
+    padding: 25px 0;
+    position: relative;
+}
+
+.light-background {
+    --background-color: #f2f4f6;
+    --surface-color: #ffffff;
+}
+
+.page-title h1 {
+    font-size: 28px;
+    font-weight: 300;
+}
+.mb-2 {
+    margin-bottom: .5rem !important;
+}
+
+h1{
+    color: var(--heading-color);
+    font-family: var(--heading-font);
+}
+
+.breadcrumbs ol li a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: 0.3s;
+}
+.page-title .breadcrumbs ol li+li {
+    padding-left: 10px;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    unicode-bidi: isolate;
+}
+.page-title .breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.page-title .breadcrumbs ol li+li::before {
+    content: "/";
+    display: inline-block;
+    padding-right: 10px;
+    color: 
+color-mix(in srgb, var(--default-color), transparent 70%);
+}

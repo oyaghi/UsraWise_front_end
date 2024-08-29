@@ -196,33 +196,33 @@
             <div id="test-results-content" class="hidden">
                 <h2>Test Results</h2>
                 <div class="tabs">
-                    <button class="tab-button active" onclick="showTabContent(0)">Tab 1</button>
-                    <button class="tab-button" onclick="showTabContent(1)">Tab 2</button>
-                    <button class="tab-button" onclick="showTabContent(2)">Tab 3</button>
-                    <button class="tab-button" onclick="showTabContent(3)">Tab 4</button>
-                    <button class="tab-button" onclick="showTabContent(4)">Tab 5</button>
+                    <button  class="tab-button active" onclick="showTabContent(0)">Learning Resources</button>
+                    <button  class="tab-button" onclick="showTabContent(1)">Parenting Advice</button>
+                    <button  class="tab-button" onclick="showTabContent(2)">Teacher Communication</button>
+                    <button  class="tab-button" onclick="showTabContent(3)">Progress Tracking</button>
+                    <button  class="tab-button" onclick="showTabContent(4)">Scheduling</button>
                 </div>
-                <div class="tab-content active">
+                <div id="test-results-tab1" class="tab-content active">
                     <ul>
                         <li class="point"><a href="https://youtube.com" target="_blank">link</a></li>
                     </ul>
                 </div>
-                <div class="tab-content">
+                <div id="test-results-tab2" class="tab-content">
                     <ul>
                         <li class="point"><a href="https://youtube.com" target="_blank">link</a></li>
                     </ul>
                 </div>
-                <div class="tab-content">
+                <div id="test-results-tab3" class="tab-content">
                     <ul>
                         <li class="point"><a href="https://youtube.com" target="_blank">link</a></li>
                     </ul>
                 </div>
-                <div class="tab-content">
+                <div id="test-results-tab4" class="tab-content">
                     <ul>
                         <li class="point"><a href="https://youtube.com" target="_blank">link</a></li>
                     </ul>
                 </div>
-                <div class="tab-content">
+                <div id="test-results-tab5" class="tab-content">
                     <ul>
                         <li class="point"><a href="https://youtube.com" target="_blank">link</a></li>
                     </ul>
@@ -234,14 +234,21 @@
     <script>
       // JavaScript for Tab Switching
       function showTabContent(index) {
-          const tabs = document.querySelectorAll('.tab-content');
-          const buttons = document.querySelectorAll('.tab-button');
-          
-          tabs.forEach((tab, i) => {
-              tab.classList.toggle('active', i === index);
-              buttons[i].classList.toggle('active', i === index);
-          });
-      }
+    const tabs = document.querySelectorAll('.tab-content');
+    const buttons = document.querySelectorAll('.tab-button');
+    
+    tabs.forEach((tab, i) => {
+        const isActive = i === index;
+        tab.classList.toggle('active', isActive);
+        buttons[i].classList.toggle('active', isActive);
+        
+        if (isActive) {
+            console.log(`Displaying content for sub-tab index: ${index}`);
+            console.log(tab.innerHTML); // This will log the HTML content of the active tab
+        }
+    });
+}
+
   
       // JavaScript for Tab Navigation
       document.getElementById('profile-tab').addEventListener('click', () => showTab('profile-content'));
@@ -339,7 +346,98 @@
       document.addEventListener('DOMContentLoaded', function() {
           fetchChildrenData();
       });
+
+      async function fetchTestResultsData() {
+    const token = localStorage.getItem('accessToken');
+    if (!token) {
+        console.error("Token not found in localStorage");
+        return;
+    }
+
+    try {
+        const response = await fetch('https://9dae-176-29-148-34.ngrok-free.app/core/nova/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({ child_id: 30 })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log('API Response Data:', data); // Debug output
+            displayTestResultsData(data.Output);
+        } else {
+            console.error("Failed to fetch test results data:", response.status, response.statusText);
+        }
+    } catch (error) {
+        console.error("Error fetching test results data:", error);
+    }
+}
+
+function displayTestResultsData(data) {
+    const tabContents = {
+        'test-results-tab1': {
+            title: 'Personalized Learning Resources and Activities',
+            content: data.Personalized_Learning_Resources_and_Activities
+        },
+        'test-results-tab2': {
+            title: 'Tailored Parenting Advice and Strategies',
+            content: data.Tailored_Parenting_Advice_and_Strategies
+        },
+        'test-results-tab3': {
+            title: 'Tools for Communication with Teachers and School Staff',
+            content: data.Tools_for_Communication_with_Teachers_and_School_Staff
+        },
+        'test-results-tab4': {
+            title: 'Progress Tracking Tools',
+            content: data.Progress_Tracking_Tools
+        },
+        'test-results-tab5': {
+            title: 'Meeting Scheduling',
+            content: data.Meeting_Scheduling
+        }
+    };
+
+    Object.keys(tabContents).forEach(tabId => {
+        const tabContent = tabContents[tabId];
+        const tabElement = document.getElementById(tabId);
+        
+        if (tabElement && tabContent.content) {
+            let tabHtml = `<h2>${tabContent.title}</h2>`;
+
+            Object.keys(tabContent.content).forEach(key => {
+                const contentData = tabContent.content[key];
+                const resources = contentData.Resources || {};
+                const links = contentData.Links || {};
+
+                tabHtml += `
+                    <p><strong>${key.replace(/_/g, ' ')}:</strong> ${contentData.Description || ''}</p>
+                    <ul>
+                        ${Object.keys(resources).map(resourceKey => `
+                            <li>
+                                <strong>${resourceKey.replace(/_/g, ' ')}:</strong> 
+                                ${resources[resourceKey]}
+                                ${links[resourceKey] ? ` - <a href="${links[resourceKey]}" target="_blank">${resourceKey.replace(/_/g, ' ')}</a>` : ''}
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+            });
+
+            tabElement.innerHTML = tabHtml;
+        } else {
+            console.warn(`No content found for tab ${tabId}`);
+        }
+    });
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Document loaded, calling fetchTestResultsData"); // Debug log
+    fetchTestResultsData();
+});
   </script>
-  
 </body>
 </html>
