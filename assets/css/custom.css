@@ -189,3 +189,33 @@ color-mix(in srgb, var(--default-color), transparent 70%);
   margin-bottom:25px;
 }
 
+.form-select {
+  border: 1px solid #3b46545b;
+  /*Initialbordercolor*/color: #556270e8;
+  /*Placeholdercolor*/transition: all ease 0.3s;
+  outline: none;
+  /*Removedefaultbrowseroutline*/box-shadow: none;
+  -webkit-transition: all ease 0.3s;
+  -moz-transition: all ease 0.3s;
+  -ms-transition: all ease 0.3s;
+  -o-transition: all ease 0.3s;
+}
+.form-select:focus {
+  border-color: #d9232d; /* Red border on focus */
+  outline: none; /* Remove any default outline */
+  box-shadow: 0 0 0 1px #d9232d; /* Create a thicker outer border effect */
+  color: #000; /* Text color on focus */
+}
+
+.form-select option.placeholder {
+  color: #999; /* Placeholder text color */
+}
+
+.form-select:not(:focus) .placeholder {
+  display: none;
+}
+
+.form-select option {
+  color: #000; /* Text color for other options */
+}
+
