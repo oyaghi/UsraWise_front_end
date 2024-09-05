@@ -21,32 +21,45 @@
     <link rel="stylesheet" href="assets/css/custom.css">
   </head>
   <body>
+     <!-- Page Title -->
+     <div class="page-title light-background">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+        <h1 class="mb-2 mb-lg-0">Register</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Register</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
     <!-- Start your project here-->
-    <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="container d-flex align-items-center justify-content-center" style="min-height: 95vh;">
       <div class="row justify-content-center w-100">
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-6">
           <form>
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="row mb-4">
               <div class="col">
                 <div data-mdb-input-init class="form-outline">
-                  <input type="text" id="name" class="form-control" />
+                  <input name="name" type="text" id="name" class="form-control" />
                   <label class="form-label" for="name">Name</label>
                 </div>
               </div>
               <div class="col">
                 <div data-mdb-input-init class="form-outline">
-                  <input type="email" id="email" class="form-control" />
+                  <input name="email" type="email" id="email" class="form-control" />
                   <label class="form-label" for="email">Email</label>
                 </div>
               </div>
             </div>
           
             <!-- Text input -->
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="text" id="gender" class="form-control" />
-              <label class="form-label" for="gender">Gender</label>
-            </div>
+            <select id="gender" class="form-select form-control cmr-b-2" aria-label="Default select example">
+              <option class="placeholder" hidden selected>Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
           
             <!-- Text input -->
             <div data-mdb-input-init class="form-outline mb-4">
@@ -55,28 +68,46 @@
             </div>
           
             <!-- Email input -->
-            <div data-mdb-input-init class="form-outline mb-4">
-              <input type="email" id="education_level" class="form-control" />
-              <label class="form-label" for="education_level">Education level</label>
-            </div>
+            
           
             <!-- Number input -->
             <div data-mdb-input-init class="form-outline mb-4">
               <input type="tel" id="phone" class="form-control" />
               <label class="form-label" for="phone">Phone</label>
             </div>
+
+            <select id="education_level" class="form-select form-control cmr-b-2" aria-label="Default select example">
+              <option class="placeholder" hidden selected>Education Level</option>
+              <option value="High School">High School</option>
+              <option value="Diploma">Diploma</option>
+              <option value="Bachelor">Bachelor</option>
+              <option value="Master">Master</option>
+              <option value="PhD">PhD</option>
+            </select>
           
           <!-- Number input -->
-          <div data-mdb-input-init class="form-outline mb-4">
-            <input type="text" id="taughting_style" class="form-control" />
-            <label class="form-label" for="taughting_style">Taughting Style</label>
-          </div>
+          <select id="taughting_style" class="form-select form-control cmr-b-2" aria-label="Default select example">
+            <option class="placeholder" hidden selected>Taughting Style</option>
+            <option value="Guide">Guide</option>
+            <option value="Support">Support</option>
+            <option value="Encourage">Encourage</option>
+            <option value="Listen">Listen</option>
+            <option value="Explain">Explain</option>
+            <option value="Patience">Patience</option>
+            <option value="Inspire">Inspire</option>
+            <option value="Correct">Correct</option>
+          </select>
         
-          <select class="form-select form-control cmr-b-2" aria-label="Default select example">
-            <option class="placeholder" hidden selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <select id="number_children" class="form-select form-control cmr-b-2" aria-label="Default select example">
+            <option class="placeholder" hidden selected>Number of Children</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
           </select>
           
           <!-- Number input -->
@@ -97,7 +128,8 @@
             
             <!-- Submit button -->
             <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4 custom_btn_primary">Create account</button>
-          </form>        </div>
+          </form> 
+        </div>
       </div>
     </div>
   

@@ -192,13 +192,10 @@ color-mix(in srgb, var(--default-color), transparent 70%);
 .form-select {
   border: 1px solid #3b46545b;
   /*Initialbordercolor*/color: #556270e8;
-  /*Placeholdercolor*/transition: all ease 0.3s;
+  /*Placeholdercolor*/transition: all ease 0.4s;
   outline: none;
   /*Removedefaultbrowseroutline*/box-shadow: none;
-  -webkit-transition: all ease 0.3s;
-  -moz-transition: all ease 0.3s;
-  -ms-transition: all ease 0.3s;
-  -o-transition: all ease 0.3s;
+  
 }
 .form-select:focus {
   border-color: #d9232d; /* Red border on focus */
